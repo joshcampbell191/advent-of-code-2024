@@ -2,34 +2,26 @@
 
 public class Day01
 {
-    public int CalculateDistance(string[] input)
+    public int CalculateTotalDistance(List<int> left, List<int> right)
     {
-        (var left, var right) = ParseInput(input);
-
         left.Sort();
         right.Sort();
 
-        var distance = 0;
-        for(var i = 0; i < left.Count; i++)
-        {
-            distance += Math.Abs(left[i] - right[i]);
-        }
-
-        return distance;
+        return left.Zip(right, CalculateDistance).Sum();
     }
 
-    private (List<int>, List<int>) ParseInput(string[] input)
+    public int CalculateSimilarityScore(IEnumerable<int> left, IEnumerable<int> right)
     {
-        var left = new List<int>();
-        var right = new List<int>();
+        return left.Select(x => CalculateSimilarity(x, right)).Sum();
+    }
 
-        foreach(var line in input)
-        {
-            var locationIds = line.Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            left.Add(locationIds[0]);
-            right.Add(locationIds[1]);
-        }
+    private int CalculateDistance(int source, int destination)
+    {
+        return Math.Abs(source - destination);
+    }
 
-        return new(left, right);
+    private int CalculateSimilarity(int locationId, IEnumerable<int> locationIds)
+    {
+        return locationId * locationIds.Count(x => x == locationId);
     }
 }

@@ -29,6 +29,6 @@ public class Day01Tests
         var similarity = sut.CalculateSimilarityScore(left, right);
 
         // Assert
-        Assert.Equal(31, similarity);
+        Assert.Equal(expected, similarity);
     }
 }

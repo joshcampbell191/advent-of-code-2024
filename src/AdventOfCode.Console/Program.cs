@@ -1,9 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
-var path = @"Inputs\day03.txt";
-var input = File.ReadAllText(path);
+var path = @"Inputs\day04.txt";
 
-var day = new Day03();
-var sum = day.ComputeEnabledMultiplications(input);
+var lines = File.ReadAllLines(path);
+var input = lines.Select(x => x.ToArray()).ToArray();
 
-Console.WriteLine($"Sum Enabled Multiplications: {sum}");
+var day = new Day04();
+var count = day.CountCrossXmas(input);
+
+Console.WriteLine($"Count Cross: {count}");
 

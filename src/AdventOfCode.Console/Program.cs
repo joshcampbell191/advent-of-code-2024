@@ -1,11 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-var path = @"Inputs\day04.txt";
+var path = @"Inputs\day06.txt";
 
 var lines = File.ReadAllLines(path);
-var input = lines.Select(x => x.ToArray()).ToArray();
+var input = lines.Select(x => x.ToList()).ToArray();
 
-var day = new Day04();
-var count = day.CountCrossXmas(input);
+var day = new Day06();
+var count = day.CountDistinctPositions(input);
 
-Console.WriteLine($"Count Cross: {count}");
-
+Console.WriteLine($"Count Distinct Positions: {count}");
